@@ -2,15 +2,6 @@ import { memoryStore, chatStore, settingsStore } from '../store/db.js'
 import { callAI } from '../ai/claude.js'
 import { logger } from '../utils/logger.js'
 
-// 压缩记忆：把旧对话摘要成一段文字
-export async function compressMemory(petId) {
-  try {
-    const chats = await chatStore.getByPet(petId, 100)
-    if (
-      import { memoryStore, chatStore, settingsStore } from '../store/db.js'
-import { callAI } from '../ai/claude.js'
-import { logger } from '../utils/logger.js'
-
 export async function compressMemory(petId) {
   try {
     const chats = await chatStore.getByPet(petId, 100)
@@ -36,10 +27,7 @@ export async function compressMemory(petId) {
         type: 'summary',
         content: summary,
       })
-      const oldIds = toCompress.map(c => c.id).filter(Boolean)
-      for (const id of oldIds) {
-        await chatStore.deleteAll(petId)
-      }
+      await chatStore.deleteOld(petId, 10)
       await logger.info(`宠物 ${petId} 记忆压缩完成`)
       return summary
     }
