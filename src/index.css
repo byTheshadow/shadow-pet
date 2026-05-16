@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { font-size: 16px; }
+  body {
+    background-color: #fdf6e3;
+    color: #4a4a4a;
+    -webkit-font-smoothing: antialiased;
+  }
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: #e8ddd0; border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: #d0c4b0; }
+}
+
+@layer components {
+  .stat-bar {
+    @apply h-2 rounded-full transition-all duration-500;
+  }
+  .card {
+    @apply bg-white rounded-2xl shadow-sm border border-pet-border p-4;
+  }
+  .btn-primary {
+    @apply bg-pet-accent text-white rounded-xl px-4 py-2 text-sm font-medium
+           hover:opacity-90 active:scale-95 transition-all duration-150
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-secondary {
+    @apply bg-pet-card text-pet-text rounded-xl px-4 py-2 text-sm font-medium
+           border border-pet-border hover:bg-pet-border active:scale-95
+           transition-all duration-150;
+  }
+  .btn-danger {
+    @apply bg-red-50 text-red-500 rounded-xl px-4 py-2 text-sm font-medium
+           border border-red-200 hover:bg-red-100 active:scale-95
+           transition-all duration-150;
+  }
+  .input-base {
+    @apply w-full rounded-xl border border-pet-border bg-white px-3 py-2
+           text-sm text-pet-text placeholder-pet-muted
+           focus:outline-none focus:ring-2 focus:ring-pet-accent/40
+           transition-all duration-150;
+  }
+  .textarea-base {
+    @apply input-base resize-none;
+  }
+  .tab-active {
+    @apply bg-pet-accent text-white;
+  }
+  .tab-inactive {
+    @apply bg-transparent text-pet-muted hover:text-pet-text;
+  }
+}
